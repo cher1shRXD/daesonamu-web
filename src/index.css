@@ -1,0 +1,14 @@
+@import "../node_modules/react-toastify/dist/ReactToastify.css";
+
+body, html {
+  font-size: 10px;
+  margin: 0;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
+.Toastify__toast-body {
+  font-size: 1.4rem;
+}
