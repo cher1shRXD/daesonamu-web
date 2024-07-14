@@ -54,7 +54,7 @@ instance.interceptors.response.use(
           localStorage.setItem("ACCESS_TOKEN", newAccessToken);
           localStorage.setItem("REFRESH_TOKEN", newRefreshToken);
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-          return await instance(originalRequest);
+          return instance(originalRequest);
         } catch (refreshError) {
           NotificationService.error('토큰이 만료되었습니다. 다시 로그인 해주세요.');
           return Promise.reject(refreshError);
