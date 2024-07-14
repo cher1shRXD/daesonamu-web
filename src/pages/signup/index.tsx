@@ -45,7 +45,7 @@ const Signup = () => {
 
   const handleStudentId = (e:any) => {
     const content = e.target.value;
-    const regex = /^[1-3][1-4][0-1][1-9]$/;
+    const regex = /^[1-3][1-4][0-1][0-9]$/;
     setStudentId(content);
     if(regex.test(content)) {
       setStudentIdValid(true);
