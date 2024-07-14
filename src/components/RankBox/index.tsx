@@ -21,7 +21,7 @@ const RankBox = () => {
 
   return (
     <S.RankBox>
-      {rank?.slice(0, 9).map((item,idx) => (
+      {rank?.slice(0, 10).map((item,idx) => (
         <S.RankerWrap key={item.id}>
           <S.RankNumWrap>{idx+1}</S.RankNumWrap>
           <BoardBox

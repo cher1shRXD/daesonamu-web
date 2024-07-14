@@ -44,6 +44,6 @@ export const MealWrap = styled.div`
 
 export const RankWrap = styled.div`
   width:30rem;
-  height: 60rem;
+  height: 67rem;
   box-sizing:border-box;
 `

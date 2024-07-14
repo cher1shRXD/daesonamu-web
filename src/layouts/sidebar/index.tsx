@@ -4,6 +4,7 @@ import shortsIcon from "../../assets/icons/shorts.svg";
 import writeIcon from "../../assets/icons/write.svg";
 import boardIcon from "../../assets/icons/board.svg";
 import userIcon from "../../assets/icons/user.svg";
+import codingIcon from "../../assets/icons/coding.svg";
 
 const SideBar = () => {
   return (
@@ -19,6 +20,10 @@ const SideBar = () => {
       <S.Menu to="/free-board">
         <S.Image src={boardIcon} />
         <S.MenuText>자유게시판</S.MenuText>
+      </S.Menu>
+      <S.Menu to="/coding-board">
+        <S.Image src={codingIcon} />
+        <S.MenuText>코딩게시판</S.MenuText>
       </S.Menu>
       <S.Menu to="/write">
         <S.Image src={writeIcon} />

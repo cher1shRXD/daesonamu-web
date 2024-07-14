@@ -7,7 +7,7 @@ const BoardBox = (props:Board) => {
   const navigate = useNavigate();
 
   const viewDetail = () => {
-    navigate(`/free-board/${props.id}`);
+    navigate(`/post/${props.id}`);
   }
 
   return (

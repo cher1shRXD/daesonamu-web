@@ -7,8 +7,9 @@ body, html {
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
-  user-select:none
+  user-select:none;
 }
+
 
 .Toastify__toast-body {
   font-size: 1.4rem;

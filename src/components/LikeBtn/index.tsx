@@ -20,6 +20,7 @@ const LikeBtn = (props:{boardId:number,likes:number}) => {
 
 
   const likeAction = async () => {
+    setLoading(true);
     await instance.post(`/likes/${props.boardId}`)
     .then((res)=>{
       setLikeCount(res.data);
@@ -28,10 +29,14 @@ const LikeBtn = (props:{boardId:number,likes:number}) => {
     .catch(()=>{
       NotificationService.error("네트워크 에러");
     })
+    .finally(()=>{
+      setLoading(false);
+    });
   }
 
 
   const dislikeAction = async () => {
+    setLoading(true);
     await instance.delete(`/likes/${props.boardId}`)
     .then((res)=>{
       setLikeCount(res.data);
@@ -39,6 +44,9 @@ const LikeBtn = (props:{boardId:number,likes:number}) => {
     })
     .catch(()=>{
       NotificationService.error("네트워크 에러");
+    })
+    .finally(()=>{
+      setLoading(false);
     });
   };
 

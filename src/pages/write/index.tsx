@@ -30,15 +30,10 @@ const Write = () => {
         <S.SelectBox onChange={handleCategory}>
           <S.Option value="FREE">자유게시판</S.Option>
           <S.Option value="SHORTS">쇼츠게시판</S.Option>
+          <S.Option value="CODING">코딩게시판</S.Option>
         </S.SelectBox>
       </S.WriteOptionWrap>
-      {
-        category === "FREE" ? (
-          <MarkdownEditor />
-        ) : (
-          <ShortsEditor />
-        )
-      }
+      {category === "FREE" || category === "CODING" ? <MarkdownEditor category={category}/> : <ShortsEditor />}
     </S.Container>
   );
 }

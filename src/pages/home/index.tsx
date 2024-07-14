@@ -4,18 +4,18 @@ import { Board } from '../../interfaces/board';
 import BoardBox from '../../components/BoardBox';
 import MealBox from '../../components/MealBox';
 import useGetFreeBoards from '../../hooks/useGetFreeBoards';
-import useGetShortsBoards from '../../hooks/useGetShortsBoards';
 import { useNavigate } from 'react-router-dom';
 import RankBox from '../../components/RankBox';
+import useGetCodingBoards from '../../hooks/useGetCodingBoards';
 
 const Home = () => {
 
-  const [freeboard,setFreeBoard] = useState<Board[]>();
-  const [shortsboard, setShortsBoard] = useState<Board[]>();
+  const [freeBoard,setFreeBoard] = useState<Board[]>();
+  const [codingBoard, setCodingBoard] = useState<Board[]>();
   
 
   const { getFreeBoards } = useGetFreeBoards(); 
-  const { getShortsBoards } = useGetShortsBoards(); 
+  const { getCodingBoards } = useGetCodingBoards(); 
   const navigate = useNavigate();
 
   const freeBoardReq = async () => {
@@ -29,8 +29,8 @@ const Home = () => {
 
   const shortsBoardReq = async () => {
     try {
-      const res = await getShortsBoards();
-      setShortsBoard(res);
+      const res = await getCodingBoards();
+      setCodingBoard(res);
     } catch (err) {
       console.log(err);
     }
@@ -55,7 +55,7 @@ const Home = () => {
           >
             자유게시판 {">"}
           </S.WrapTitle>
-          {freeboard?.slice(0, 4).map((item) => (
+          {freeBoard?.slice(0, 4).map((item) => (
             <BoardBox
               title={item.title}
               author={item.author}
@@ -70,13 +70,13 @@ const Home = () => {
         <S.BoardWrap style={{ marginTop: "2rem" }}>
           <S.WrapTitle
             onClick={() => {
-              navigate("/shorts");
+              navigate("/coding-board");
             }}
             style={{ cursor: "pointer" }}
           >
-            쇼츠게시판 {">"}
+            코딩게시판 {">"}
           </S.WrapTitle>
-          {shortsboard?.slice(0, 4).map((item) => (
+          {codingBoard?.slice(0, 4).map((item) => (
             <BoardBox
               title={item.title}
               author={item.author}
@@ -94,7 +94,7 @@ const Home = () => {
         <MealBox />
       </S.MealWrap>
       <S.RankWrap>
-        <S.WrapTitle>개추랭킹</S.WrapTitle>
+        <S.WrapTitle>대추랭킹</S.WrapTitle>
         <RankBox />
       </S.RankWrap>
     </S.Container>

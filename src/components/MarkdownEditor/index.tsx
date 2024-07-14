@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const mdParser = new MarkdownIt();
 
-const MarkdownEditor = () => {
+const MarkdownEditor = (props:{category:string}) => {
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState('');
   const [imageLoading, setImageLoading] = useState(false);
@@ -62,7 +62,7 @@ const MarkdownEditor = () => {
     if(title.trim().length > 0 && title.length < 51 && markdown.trim().length > 0 && !imageLoading) {
       try{
         setLoading(true);
-        const res = await instance.post('/boards',{title,detail:markdown,category:"FREE"});
+        const res = await instance.post('/boards',{title,detail:markdown,category:props.category});
         console.log(res);
         NotificationService.success('게시완료');
         navigate('/');

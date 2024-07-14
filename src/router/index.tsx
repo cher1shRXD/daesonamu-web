@@ -10,6 +10,7 @@ import Detail from "../pages/detail";
 import Edit from "../pages/edit";
 import NotFound from "../pages/not_found";
 import Profile from "../pages/user";
+import CodingBoard from "../pages/coding";
 
 const Router = () => {
   return (
@@ -22,8 +23,9 @@ const Router = () => {
           <Route path="/write" element={<Write />}></Route>
           <Route path="/shorts" element={<Shorts />}></Route>
           <Route path="/free-board" element={<Board />}></Route>
+          <Route path="/coding-board" element={<CodingBoard />}></Route>
           <Route path="/user" element={<Profile />}></Route>
-          <Route path="/free-board/:id" element={<Detail />}></Route>
+          <Route path="/post/:id" element={<Detail />}></Route>
           <Route path="/edit/:id" element={<Edit />}></Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Route>
