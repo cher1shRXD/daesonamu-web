@@ -26,7 +26,7 @@ const Shorts = () => {
   return (
     <S.Cotainer>
       {board && shuffle && shuffle(board).map((item)=>(
-        <ShortsBox key={item.id} id={item.id} title={item.title} likesCount={item.likesCount} detail={item.detail} author={item.author} createdAt={item.createdAt} />
+        <ShortsBox key={item.id} id={item.id} title={item.title} likesCount={item.likesCount} detail={item.detail} author={item.author} createdAt={item.createdAt} category={item.category}/>
       ))}
     </S.Cotainer>
   )

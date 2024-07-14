@@ -36,6 +36,7 @@ const CodingBoard = () => {
             createdAt={item.createdAt}
             author={item.author}
             likesCount={item.likesCount}
+            category={item.category}
           />
         ))}
       </S.BoardArea>

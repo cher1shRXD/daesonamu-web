@@ -1,5 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import NotificationService from "../toastify/notificationService";
+import { useNavigate } from "react-router-dom";
 
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
@@ -56,7 +57,6 @@ instance.interceptors.response.use(
           return instance(originalRequest);
         } catch (refreshError) {
           NotificationService.error('토큰이 만료되었습니다. 다시 로그인 해주세요.');
-          window.location.href = '/login';
           return Promise.reject(refreshError);
         }
       }

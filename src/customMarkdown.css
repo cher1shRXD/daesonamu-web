@@ -1,3 +1,6 @@
 .rc-md-editor .editor-container>.section {
   border-right:none;
 }
+pre {
+  text-align: start;
+}

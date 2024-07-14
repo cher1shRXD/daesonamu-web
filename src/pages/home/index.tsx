@@ -64,6 +64,7 @@ const Home = () => {
               id={item.id}
               detail={item.detail}
               likesCount={item.likesCount}
+              category={item.category}
             />
           ))}
         </S.BoardWrap>
@@ -85,6 +86,7 @@ const Home = () => {
               id={item.id}
               detail={item.detail}
               likesCount={item.likesCount}
+              category={item.category}
             />
           ))}
         </S.BoardWrap>

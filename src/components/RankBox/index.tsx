@@ -31,6 +31,7 @@ const RankBox = () => {
             author={item.author}
             likesCount={item.likesCount}
             createdAt={item.createdAt}
+            category={item.category}
           />
         </S.RankerWrap>
       ))}

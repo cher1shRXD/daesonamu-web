@@ -65,9 +65,12 @@ const Detail = () => {
   }
 
   useEffect(()=>{
+    const accessToken = localStorage.getItem("ACCESS_TOKEN")
     try{
       boardReq();
-      userReq();
+      if(accessToken && accessToken !== null) {
+        userReq();
+      }
     }catch(err){
       NotificationService.error('요청실패');
     }

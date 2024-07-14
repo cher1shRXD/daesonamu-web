@@ -7,4 +7,5 @@ export interface Board {
   createdAt:string;
   author?:User;
   likesCount:number;
+  category:string;
 }

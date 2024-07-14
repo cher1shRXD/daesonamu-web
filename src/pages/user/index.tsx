@@ -28,7 +28,7 @@ const Profile = () => {
         navigate('/login');
       }
     }catch(err){
-      console.log(err);
+      navigate("/login");
     }
   },[]);
 
@@ -61,6 +61,7 @@ const Profile = () => {
             createdAt={item.createdAt}
             key={item.id}
             likesCount={item.likesCount}
+            category={item.category}
           />
         ))}
       </S.MyPostsArea>
