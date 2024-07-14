@@ -11,7 +11,7 @@ export const Cotainer = styled.div`
 
 export const PostInfoWrap = styled.div`
   width:100%;
-  height:12rem;
+  min-height:12rem;
   display:flex;
   flex-direction:column;
   justify-content:center;
