@@ -1,4 +1,4 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import NotificationService from "../toastify/notificationService";
 import { useNavigate } from "react-router-dom";
 
@@ -31,7 +31,7 @@ instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  async (error: AxiosError) => {
+  async (error: AxiosError) : Promise<any> => {
     const originalRequest = error.config as CustomAxiosRequestConfig;
     if (
       originalRequest &&
@@ -54,7 +54,7 @@ instance.interceptors.response.use(
           localStorage.setItem("ACCESS_TOKEN", newAccessToken);
           localStorage.setItem("REFRESH_TOKEN", newRefreshToken);
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-          return instance(originalRequest);
+          return await instance(originalRequest);
         } catch (refreshError) {
           NotificationService.error('토큰이 만료되었습니다. 다시 로그인 해주세요.');
           return Promise.reject(refreshError);
