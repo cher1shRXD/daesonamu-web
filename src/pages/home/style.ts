@@ -37,7 +37,7 @@ export const WrapTitle = styled.h3`
 
 export const MealWrap = styled.div`
   width:25rem;
-  height:55rem;
+  height:60rem;
   box-sizing:border-box;
   margin: 0 3rem;
 `

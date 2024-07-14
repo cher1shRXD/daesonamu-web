@@ -10,7 +10,7 @@ export const MealBox = styled.div`
 `
 export const Meal = styled.div`
   width: 100%;
-  height: 30%;
+  height: 25%;
   border: 0.1rem solid #ccc;
   border-radius: 2rem;
   display: flex;
