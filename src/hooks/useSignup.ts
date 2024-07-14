@@ -12,7 +12,7 @@ const useSignup = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        'http://api-daesonamu.kro.kr:8080/auth/signup',
+        'https://api-daesonamu.p-e.kr/auth/signup',
         {
           studentId,
           username,

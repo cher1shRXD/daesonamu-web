@@ -6,7 +6,7 @@ interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
 }
 
 const instance = axios.create({
-  baseURL: 'http://api-daesonamu.kro.kr:8080',
+  baseURL: 'https://api-daesonamu.p-e.kr',
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
     Accept: "application/json",
@@ -42,7 +42,7 @@ instance.interceptors.response.use(
       if (refreshToken) {
         try {
           const response = await axios.post(
-            'http://api-daesonamu.kro.kr:8080/auth/refresh',
+            'https://api-daesonamu.p-e.kr/auth/refresh',
             {
               refreshToken,
             }

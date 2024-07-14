@@ -8,7 +8,7 @@ const useLogin = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://api-daesonamu.kro.kr:8080/auth/login",
+        "https://api-daesonamu.p-e.kr/auth/login",
         {
           studentId,
           password,

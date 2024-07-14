@@ -28,7 +28,7 @@ const MarkdownEditor = () => {
     try {
       setImageLoading(true);
       const res = await instance.post(
-        "http://api-daesonamu.kro.kr:8080/upload/file",
+        "https://api-daesonamu.p-e.kr/upload/file",
         formData,
         {
           headers: {
