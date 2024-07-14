@@ -19,21 +19,13 @@ const Home = () => {
   const navigate = useNavigate();
 
   const freeBoardReq = async () => {
-    try{
-      const res = await getFreeBoards();
-      setFreeBoard(res);
-    }catch(err){
-      console.log(err);
-    }
+    const res = await getFreeBoards();
+    setFreeBoard(res);
   }
 
   const shortsBoardReq = async () => {
-    try {
-      const res = await getCodingBoards();
-      setCodingBoard(res);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await getCodingBoards();
+    setCodingBoard(res);
   };
 
   

@@ -24,7 +24,6 @@ const MealBox = () => {
       )
       .then((response) => {
         setMeal(response.data.mealServiceDietInfo[1].row);
-        console.log(response);
       })
       .catch(() => {
         setMeal([]);
