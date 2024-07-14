@@ -33,6 +33,9 @@ const Signup = () => {
         if (err.response.status === 401) {
           NotificationService.error("비밀번호가 틀립니다.");
         }
+        if (err.response.status === 409) {
+          NotificationService.error("이미 사용되고 있는 학번입니다.");
+        }
         console.log(err);
       }
     }else{
