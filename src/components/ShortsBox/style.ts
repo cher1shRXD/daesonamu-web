@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  min-width: 25rem;
+  min-width: 22rem;
   width: 25%;
   height: calc(100vh - 10rem);
   scroll-snap-align: start;
