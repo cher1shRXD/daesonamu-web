@@ -52,8 +52,7 @@ export const LogOutBtn = styled.button`
 export const MyPostsArea = styled.div`
   max-width:70rem;
   width:90%;
-  margin: 0 auto;
-  margin-top:2rem;
+  margin: 2rem auto;
 `
 export const MyPostsTitle = styled.h3`
   font-size:2rem;

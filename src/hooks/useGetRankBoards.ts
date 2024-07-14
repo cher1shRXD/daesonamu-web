@@ -2,12 +2,12 @@ import { useState } from "react";
 import instance from "../libs/axios/customAxios";
 import { Board } from "../interfaces/board";
 
-const useGetAllBoards = () => {
+const useGetRankBoards = () => {
   const [error, setError] = useState();
 
-  const getAllBoards = async (): Promise<Board[]> => {
+  const getRankBoards = async (): Promise<Board[]> => {
     try {
-      const res = await instance.get("boards");
+      const res = await instance.get("boards/rank");
       return res.data;
     } catch (err: any) {
       setError(err);
@@ -15,7 +15,7 @@ const useGetAllBoards = () => {
     } finally {
     }
   };
-  return { getAllBoards, error };
+  return { getRankBoards, error };
 };
 
-export default useGetAllBoards;
+export default useGetRankBoards;

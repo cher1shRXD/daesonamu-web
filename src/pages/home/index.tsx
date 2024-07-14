@@ -6,6 +6,7 @@ import MealBox from '../../components/MealBox';
 import useGetFreeBoards from '../../hooks/useGetFreeBoards';
 import useGetShortsBoards from '../../hooks/useGetShortsBoards';
 import { useNavigate } from 'react-router-dom';
+import RankBox from '../../components/RankBox';
 
 const Home = () => {
 
@@ -62,6 +63,7 @@ const Home = () => {
               key={item.id}
               id={item.id}
               detail={item.detail}
+              likesCount={item.likesCount}
             />
           ))}
         </S.BoardWrap>
@@ -82,6 +84,7 @@ const Home = () => {
               key={item.id}
               id={item.id}
               detail={item.detail}
+              likesCount={item.likesCount}
             />
           ))}
         </S.BoardWrap>
@@ -90,6 +93,10 @@ const Home = () => {
         <S.WrapTitle>오늘의 급식</S.WrapTitle>
         <MealBox />
       </S.MealWrap>
+      <S.RankWrap>
+        <S.WrapTitle>개추랭킹</S.WrapTitle>
+        <RankBox />
+      </S.RankWrap>
     </S.Container>
   );
 }

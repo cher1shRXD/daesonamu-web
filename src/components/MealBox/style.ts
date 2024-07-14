@@ -5,7 +5,7 @@ export const MealBox = styled.div`
   height:100%;
   display:flex;
   flex-direction:column;
-  justify-content:space-around;
+  justify-content:flex-start;
   align-items:center;
 `
 export const Meal = styled.div`
@@ -22,4 +22,5 @@ export const Meal = styled.div`
   font-size:1.3rem;
   line-height:1.5;
   font-weight:bold;
+  margin-top: 3rem;
 `;

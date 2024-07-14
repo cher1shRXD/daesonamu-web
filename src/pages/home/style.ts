@@ -7,6 +7,7 @@ export const Container = styled.div`
   min-height:calc(100vh - 10rem);
   display: flex;
   flex-wrap:wrap;
+  justify-content:center;
   padding: 2rem 2rem 0 2rem;
   box-sizing:border-box;
 `
@@ -22,8 +23,8 @@ export const BoardArea = styled.div`
 `
 
 export const BoardWrap = styled.div`
-  max-width: 65rem;
-  width:90%;
+  max-width: 70rem;
+  width:100%;
   min-height: 32rem;
 `;
 export const WrapTitle = styled.h3`
@@ -35,7 +36,14 @@ export const WrapTitle = styled.h3`
 `
 
 export const MealWrap = styled.div`
-  width:30rem;
+  width:25rem;
   height:55rem;
+  box-sizing:border-box;
+  margin: 0 3rem;
+`
+
+export const RankWrap = styled.div`
+  width:30rem;
+  height: 60rem;
   box-sizing:border-box;
 `

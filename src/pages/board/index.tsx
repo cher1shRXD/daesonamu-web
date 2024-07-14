@@ -30,7 +30,7 @@ const FreeBoard = () => {
         <S.PageTitle>자유게시판</S.PageTitle>
         {
           board?.map((item)=>(
-            <BoardBox title={item.title} detail={item.detail} id={item.id} key={item.id} createdAt={item.createdAt} author={item.author}/>
+            <BoardBox title={item.title} detail={item.detail} id={item.id} key={item.id} createdAt={item.createdAt} author={item.author} likesCount={item.likesCount}/>
           ))
         }
       </S.BoardArea>

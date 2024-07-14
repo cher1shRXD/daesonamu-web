@@ -6,4 +6,5 @@ export interface Board {
   detail:string;
   createdAt:string;
   author?:User;
+  likesCount:number;
 }

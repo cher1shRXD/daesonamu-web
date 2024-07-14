@@ -11,9 +11,11 @@ import NotificationService from "../../libs/toastify/notificationService";
 import '../../customMarkdown.css'
 import { User } from "../../interfaces/user";
 import useGetUser from "../../hooks/useGetUser";
+import LikeBtn from "../../components/LikeBtn";
 
 const Detail = () => {
 
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
 
   const mdParser = new MarkdownIt();
 
@@ -30,6 +32,7 @@ const Detail = () => {
   const boardReq = async () => {
     try{
       const res = await getBoardDetail(Number(param.id));
+      console.log(res);
       setDetail(res);
     }catch{
       if(error === undefined) {
@@ -74,36 +77,47 @@ const Detail = () => {
   return (
     <S.Cotainer>
       {!loading ? (
-          <>
-            {detail && user && detail.author?.id === user.id && (
-              <S.ManagePostWrap>
-                <S.ManagePost onClick={editReq}>수정</S.ManagePost>
-                <S.ManagePost onClick={deleteReq}>삭제</S.ManagePost>
-              </S.ManagePostWrap>
-            )}
-            <S.PostInfoWrap>
-              <S.Title>{detail?.title}</S.Title>
-              <S.PostInfo>
-                {detail?.author?.username} - {detail?.createdAt}
-              </S.PostInfo>
-            </S.PostInfoWrap>
-            <MdEditor
-              value={detail?.detail}
-              style={{ height: "100%", border: "none", textAlign:'center', display:'flex', justifyContent:'center'}}
-              renderHTML={(text) => mdParser.render(text)}
-              config={{
-                view: {
-                  md: false,
-                  menu: false,
-                  html: true,
-                },
-              }}
-            />
-          </> 
-          
-        ) : (
-          <div>로딩중...</div>
-        )}
+        <>
+          {detail && user && detail.author?.id === user.id && (
+            <S.ManagePostWrap>
+              <S.ManagePost onClick={editReq}>수정</S.ManagePost>
+              <S.ManagePost onClick={deleteReq}>삭제</S.ManagePost>
+            </S.ManagePostWrap>
+          )}
+          <S.PostInfoWrap>
+            <S.Title>{detail?.title}</S.Title>
+            <S.PostInfo>
+              {detail?.author?.username} - {detail?.createdAt}
+            </S.PostInfo>
+          </S.PostInfoWrap>
+          <MdEditor
+            value={detail?.detail}
+            style={{
+              height: "100%",
+              border: "none",
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+            }}
+            renderHTML={(text) => mdParser.render(text)}
+            config={{
+              view: {
+                md: false,
+                menu: false,
+                html: true,
+              },
+            }}
+          />
+        </>
+      ) : (
+        <div>로딩중...</div>
+      )}
+      {accessToken !== null && accessToken && detail && (
+        <LikeBtn
+          boardId={Number(detail?.id)}
+          likes={detail.likesCount}
+        />
+      )}
     </S.Cotainer>
   );
 }

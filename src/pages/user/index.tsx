@@ -53,13 +53,14 @@ const Profile = () => {
       </S.UserInfoArea>
       <S.MyPostsArea>
         <S.MyPostsTitle>내가 쓴 글</S.MyPostsTitle>
-        {user?.board.map((item: Board) => (
+        {user?.board.reverse().map((item: Board) => (
           <BoardBox
             title={item.title}
             detail={item.detail}
             id={item.id}
             createdAt={item.createdAt}
             key={item.id}
+            likesCount={item.likesCount}
           />
         ))}
       </S.MyPostsArea>
