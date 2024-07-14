@@ -12,6 +12,7 @@ export const Canvas = styled.div`
 export const Title = styled.h1`
   font-size: 4rem;
   margin: 0;
+  text-align:center;
 `
 
 export const Input = styled.input`
