@@ -46,7 +46,7 @@ const Signup = () => {
     const content = e.target.value;
     const regex = /^[1-3][1-4][0-1][0-9]$/;
     setStudentId(content);
-    if(regex.test(content)) {
+    if(regex.test(content) && content.slice(2,4) !== '00') {
       setStudentIdValid(true);
     }else{
       setStudentIdValid(false);
