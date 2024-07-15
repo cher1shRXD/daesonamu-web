@@ -7,6 +7,7 @@ import useGetFreeBoards from '../../hooks/useGetFreeBoards';
 import { useNavigate } from 'react-router-dom';
 import RankBox from '../../components/RankBox';
 import useGetCodingBoards from '../../hooks/useGetCodingBoards';
+import NotificationService from '../../libs/toastify/notificationService';
 
 const Home = () => {
 
@@ -19,13 +20,31 @@ const Home = () => {
   const navigate = useNavigate();
 
   const freeBoardReq = async () => {
-    const res = await getFreeBoards();
-    setFreeBoard(res);
+    try{
+      const res = await getFreeBoards();
+      setFreeBoard(res);
+    }catch(err:any){
+      if (err.response.data.message === "Invalid refresh token") {
+        NotificationService.warn("토큰이 만료되었습니다.");
+        navigate("/login");
+      } else {
+        NotificationService.error("네트워크 에러");
+      }
+    }
   }
 
   const shortsBoardReq = async () => {
-    const res = await getCodingBoards();
-    setCodingBoard(res);
+    try{
+      const res = await getCodingBoards();
+      setCodingBoard(res);
+    }catch(err:any){
+      if (err.response.data.message === "Invalid refresh token") {
+        NotificationService.warn("토큰이 만료되었습니다.");
+        navigate("/login");
+      } else {
+        NotificationService.error("네트워크 에러");
+      }
+    }
   };
 
   

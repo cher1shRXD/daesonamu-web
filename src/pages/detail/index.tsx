@@ -20,7 +20,7 @@ const Detail = () => {
   const mdParser = new MarkdownIt();
 
   const param = useParams();
-  const { getBoardDetail, error, loading } = useGetBoardDetail();
+  const { getBoardDetail, loading } = useGetBoardDetail();
   const { getUser } = useGetUser();
   const { deleteBoard } = useDeleteBoard();
   const navigate = useNavigate();
@@ -33,22 +33,46 @@ const Detail = () => {
     try{
       const res = await getBoardDetail(Number(param.id));
       setDetail(res);
-    }catch{
-      if(error === undefined) {
+    }catch(err:any){
+      if(err === undefined) {
         navigate('/not-found');
+      }
+      if(err.response.data.message === 'Invalid refresh token') {
+        NotificationService.warn('토큰이 만료되었습니다.');
+        navigate('/login');
+      }else{
+        NotificationService.error('네트워크 에러');
       }
     }
   }
 
   const userReq = async () => {
-    const res = await getUser();
-    setUser(res);
+    try{
+      const res = await getUser();
+      setUser(res);
+    }catch(err:any){
+      if (err.response.data.message === "Invalid refresh token") {
+        NotificationService.warn("토큰이 만료되었습니다.");
+        navigate("/login");
+      } else {
+        NotificationService.error("네트워크 에러");
+      }
+    }
   }
 
   const deleteReq = async () => {
-    await deleteBoard(Number(param.id));
-    NotificationService.success('삭제가 완료되었습니다.');
-    navigate('/');
+    try{
+      await deleteBoard(Number(param.id));
+      NotificationService.success('삭제가 완료되었습니다.');
+      navigate('/');
+    }catch(err:any) {
+      if (err.response.data.message === "Invalid refresh token") {
+        NotificationService.warn("토큰이 만료되었습니다.");
+        navigate("/login");
+      } else {
+        NotificationService.error("네트워크 에러");
+      }
+    }
   }
 
   const editReq = async () => {

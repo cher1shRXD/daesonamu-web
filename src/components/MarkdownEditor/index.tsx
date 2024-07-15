@@ -43,7 +43,13 @@ const MarkdownEditor = (props:{category:string}) => {
         );
         return { url: imageUrl };
       }
-    } catch (error) {
+    } catch (err:any) {
+      if(err.response.data.message === 'Invalid refresh token') {
+        NotificationService.warn('토큰이 만료되었습니다.');
+        navigate('/login');
+      }else{
+        NotificationService.error("네트워크 에러");
+      }
       return null;
     } finally {
       setImageLoading(false);
@@ -61,9 +67,18 @@ const MarkdownEditor = (props:{category:string}) => {
     if(title.trim().length > 0 && title.length < 51 && markdown.trim().length > 0 && !imageLoading) {
       try{
         setLoading(true);
-        const res = await instance.post('/boards',{title,detail:markdown,category:props.category});
-        NotificationService.success('게시완료');
-        navigate('/');
+        await instance.post('/boards',{title,detail:markdown,category:props.category})
+        .then(()=>{
+          NotificationService.success("게시완료");
+          navigate("/");
+        });
+      }catch(err:any){
+        if(err.response.data.message === 'Invalid refresh token') {
+          NotificationService.warn('토큰이 만료되었습니다.');
+          navigate('/login');
+        }else{
+          NotificationService.error('네트워크 에러');
+        }
       }finally{
         setLoading(false);
       }

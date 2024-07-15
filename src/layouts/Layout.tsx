@@ -15,14 +15,12 @@ const Layout = () => {
 
   return (
     <>
-    {
-      !viewState && (
+      <Header />
+      {!viewState && (
         <>
           <SideBar />
-          <Header />
         </>
-      )
-    }
+      )}
       <Outlet />
     </>
   );

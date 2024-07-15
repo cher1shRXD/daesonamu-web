@@ -27,15 +27,20 @@ const ShortsEditor = () => {
     ) {
       try {
         setLoading(true);
-        const res = await instance.post("/boards", {
+        await instance.post("/boards", {
           title,
           detail,
           category: "SHORTS",
         });
         NotificationService.success("게시완료");
         navigate("/");
-      } catch (err) {
-        NotificationService.error('네트워크 에러');
+      } catch (err:any) {
+        if (err.response.data.message === "Invalid refresh token") {
+          NotificationService.warn("토큰이 만료되었습니다.");
+          navigate("/login");
+        } else {
+          NotificationService.error("네트워크 에러");
+        }
       } finally {
         setLoading(false);
       }

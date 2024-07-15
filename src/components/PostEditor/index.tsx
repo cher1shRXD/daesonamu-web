@@ -15,11 +15,10 @@ const PostEditor = () => {
   const [title, setTitle] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState<string>();
 
   const navigate = useNavigate();
   const param = useParams();
-  const { getBoardDetail, error } = useGetBoardDetail();
+  const { getBoardDetail } = useGetBoardDetail();
 
   const handleEditorChange = ({ text }: { text: string }) => {
     setMarkdown(text);
@@ -30,10 +29,15 @@ const PostEditor = () => {
       const res = await getBoardDetail(Number(param.id));
       setMarkdown(res.detail);
       setTitle(res.title);
-      setCategory(res.category)
-    }catch{
-      if(error === undefined) {
+    }catch(err:any){
+      if(err === undefined) {
         navigate('/not-found');
+      }
+      if (err.response.data.message === "Invalid refresh token") {
+        NotificationService.warn("토큰이 만료되었습니다.");
+        navigate("/login");
+      } else {
+        NotificationService.error("네트워크 에러");
       }
     }
   } 
@@ -64,8 +68,13 @@ const PostEditor = () => {
         );
         return { url: imageUrl };
       }
-    } catch (error) {
-      return null;
+    } catch (err:any) {
+      if (err.response.data.message === "Invalid refresh token") {
+        NotificationService.warn("토큰이 만료되었습니다.");
+        navigate("/login");
+      } else {
+        NotificationService.error("네트워크 에러");
+      }
     } finally {
       setImageLoading(false);
     }
@@ -87,11 +96,18 @@ const PostEditor = () => {
     ) {
       try {
         setLoading(true);
-        const res = await instance.patch(`/boards/${param.id}/edit`, { title, detail: markdown });
-        NotificationService.success("수정완료");
-        navigate(`/post/${param.id}`);
-      } catch (err) {
-        NotificationService.error('네트워크 에러');
+        await instance.patch(`/boards/${param.id}/edit`, { title, detail: markdown })
+        .then(()=>{
+          NotificationService.success("수정완료");
+          navigate(`/post/${param.id}`);
+        });
+      } catch (err:any) {
+        if (err.response.data.message === "Invalid refresh token") {
+          NotificationService.warn("토큰이 만료되었습니다.");
+          navigate("/login");
+        } else {
+          NotificationService.error("네트워크 에러");
+        }
       } finally {
         setLoading(false);
       }

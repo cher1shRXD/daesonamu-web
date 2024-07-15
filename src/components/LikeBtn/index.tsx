@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import instance from '../../libs/axios/customAxios';
 import NotificationService from '../../libs/toastify/notificationService';
+import { useNavigate } from 'react-router-dom';
 
 const LikeBtn = (props:{boardId:number,likes:number}) => {
 
@@ -9,9 +10,20 @@ const LikeBtn = (props:{boardId:number,likes:number}) => {
   const [likeStatus, setLikeStatus] = useState<boolean>(false);
   const [likeCount, setLikeCount] = useState(props.likes);
 
+  const navigate = useNavigate();
+
   const checkLike = async () => {
-    const res = await instance.get(`/likes/${props.boardId}`)
-    setLikeStatus(res.data);
+    await instance.get(`/likes/${props.boardId}`)
+    .then((res)=>{
+      setLikeStatus(res.data);
+    })
+    .catch((err)=>{
+      if(err.response.data.message === 'Invalid refresh token') {
+        navigate('/login');
+      }else{
+        NotificationService.error('네트워크 에러');
+      }
+    })
   }
 
   useEffect(()=>{
@@ -26,7 +38,11 @@ const LikeBtn = (props:{boardId:number,likes:number}) => {
       setLikeCount(res.data);
       setLikeStatus(true);
     })
-    .catch(()=>{
+    .catch((err)=>{
+      if(err.response.data.message === 'Invalid refresh token') {
+        NotificationService.warn('토큰이 만료되었습니다.');
+        navigate('/login');
+      }
       NotificationService.error("네트워크 에러");
     })
     .finally(()=>{
@@ -37,15 +53,19 @@ const LikeBtn = (props:{boardId:number,likes:number}) => {
 
   const dislikeAction = async () => {
     setLoading(true);
-    await instance.delete(`/likes/${props.boardId}`)
-    .then((res)=>{
+    await instance.post(`/likes/${props.boardId}`)
+    .then((res) => {
       setLikeCount(res.data);
       setLikeStatus(false);
     })
-    .catch(()=>{
+    .catch((err) => {
+      if (err.response.data.message === "Invalid refresh token") {
+        NotificationService.warn("토큰이 만료되었습니다.");
+        navigate("/login");
+      }
       NotificationService.error("네트워크 에러");
     })
-    .finally(()=>{
+    .finally(() => {
       setLoading(false);
     });
   };

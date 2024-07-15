@@ -13,8 +13,16 @@ const Profile = () => {
   const [user,setUser] = useState<User>();
 
   const userReq = async () => {
-    const res = await instance.get("/auth/me");
-    setUser(res.data);
+    await instance.get("/auth/me")
+    .then((res)=>{
+      setUser(res.data);
+    })
+    .catch((err)=>{
+      if(err.response.data.message === 'Invalid refresh token') {
+        NotificationService.warn('토큰이 만료 되었습니다.');
+        navigate('/login');
+      }
+    });
   }
 
 
