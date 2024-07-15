@@ -27,7 +27,6 @@ const Login = () => {
       if(err.response.status === 401) {
         NotificationService.error('비밀번호가 틀립니다.');
       }
-      console.log(err);
     }
   }
 

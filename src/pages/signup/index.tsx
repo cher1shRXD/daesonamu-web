@@ -36,7 +36,6 @@ const Signup = () => {
         if (err.response.status === 409) {
           NotificationService.error("이미 사용되고 있는 학번입니다.");
         }
-        console.log(err);
       }
     }else{
       NotificationService.warn('모든 조건을 충족해주세요.')

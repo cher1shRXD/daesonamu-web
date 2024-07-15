@@ -67,7 +67,7 @@ const LikeBtn = (props:{boardId:number,likes:number}) => {
         disabled={loading}
         onClick={submit}
       >
-        {likeCount} 대추
+        {likeCount} 소나무
       </S.LikeBtn>
     </S.Container>
   );

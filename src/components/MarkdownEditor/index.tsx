@@ -44,7 +44,6 @@ const MarkdownEditor = (props:{category:string}) => {
         return { url: imageUrl };
       }
     } catch (error) {
-      console.error("Image upload failed:", error);
       return null;
     } finally {
       setImageLoading(false);
@@ -63,11 +62,8 @@ const MarkdownEditor = (props:{category:string}) => {
       try{
         setLoading(true);
         const res = await instance.post('/boards',{title,detail:markdown,category:props.category});
-        console.log(res);
         NotificationService.success('게시완료');
         navigate('/');
-      }catch(err){
-        console.log(err);
       }finally{
         setLoading(false);
       }

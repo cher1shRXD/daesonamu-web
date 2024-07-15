@@ -14,7 +14,6 @@ const Profile = () => {
 
   const userReq = async () => {
     const res = await instance.get("/auth/me");
-    console.log(res.data);
     setUser(res.data);
   }
 
@@ -32,9 +31,6 @@ const Profile = () => {
     }
   },[]);
 
-  useEffect(()=>{
-    console.log(user?.board);
-  },[user]);
 
   const logout = () => {
     localStorage.removeItem("ACCESS_TOKEN");

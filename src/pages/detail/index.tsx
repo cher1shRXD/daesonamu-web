@@ -32,7 +32,6 @@ const Detail = () => {
   const boardReq = async () => {
     try{
       const res = await getBoardDetail(Number(param.id));
-      console.log(res);
       setDetail(res);
     }catch{
       if(error === undefined) {
@@ -42,22 +41,14 @@ const Detail = () => {
   }
 
   const userReq = async () => {
-    try{
-      const res = await getUser();
-      setUser(res);
-    }catch(err){
-      console.log(err);
-    }
+    const res = await getUser();
+    setUser(res);
   }
 
   const deleteReq = async () => {
-    try{
-      await deleteBoard(Number(param.id));
-      NotificationService.success('삭제가 완료되었습니다.');
-      navigate('/');
-    }catch(err){
-      console.log(err);
-    }
+    await deleteBoard(Number(param.id));
+    NotificationService.success('삭제가 완료되었습니다.');
+    navigate('/');
   }
 
   const editReq = async () => {

@@ -88,7 +88,7 @@ const Home = () => {
         <MealBox />
       </S.MealWrap>
       <S.RankWrap>
-        <S.WrapTitle>대추랭킹</S.WrapTitle>
+        <S.WrapTitle>소나무랭킹</S.WrapTitle>
         <RankBox />
       </S.RankWrap>
     </S.Container>

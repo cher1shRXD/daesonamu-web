@@ -32,7 +32,6 @@ const ShortsEditor = () => {
           detail,
           category: "SHORTS",
         });
-        console.log(res);
         NotificationService.success("게시완료");
         navigate("/");
       } catch (err) {

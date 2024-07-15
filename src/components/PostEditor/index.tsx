@@ -15,6 +15,7 @@ const PostEditor = () => {
   const [title, setTitle] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState<string>();
 
   const navigate = useNavigate();
   const param = useParams();
@@ -29,6 +30,7 @@ const PostEditor = () => {
       const res = await getBoardDetail(Number(param.id));
       setMarkdown(res.detail);
       setTitle(res.title);
+      setCategory(res.category)
     }catch{
       if(error === undefined) {
         navigate('/not-found');
@@ -63,7 +65,6 @@ const PostEditor = () => {
         return { url: imageUrl };
       }
     } catch (error) {
-      console.error("Image upload failed:", error);
       return null;
     } finally {
       setImageLoading(false);
@@ -87,9 +88,8 @@ const PostEditor = () => {
       try {
         setLoading(true);
         const res = await instance.patch(`/boards/${param.id}/edit`, { title, detail: markdown });
-        console.log(res);
         NotificationService.success("수정완료");
-        navigate(`/free-board/${param.id}`);
+        navigate(`/post/${param.id}`);
       } catch (err) {
         NotificationService.error('네트워크 에러');
       } finally {
