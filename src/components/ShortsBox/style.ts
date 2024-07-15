@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   aspect-ratio:1/2;
+  max-width:90%;
   height: calc(100vh - 10rem);
   margin: 0 auto;
   scroll-snap-align: center;
