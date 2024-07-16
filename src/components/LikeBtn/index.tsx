@@ -33,7 +33,7 @@ const LikeBtn = (props:{boardId:number,likes:number}) => {
 
   const likeAction = async () => {
     setLoading(true);
-    await instance.post(`/likes/${props.boardId}`)
+    await instance.delete(`/likes/${props.boardId}`)
     .then((res)=>{
       setLikeCount(res.data);
       setLikeStatus(true);
