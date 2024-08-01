@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 
 const useSignup = () => {
@@ -8,7 +8,7 @@ const useSignup = () => {
     studentId: string,
     username: string,
     password: string,
-  ): Promise<void> => {
+  ): Promise<AxiosResponse> => {
     try {
       setLoading(true);
       const res = await axios.post(
